@@ -823,6 +823,7 @@ Promise.all(docs.map(d=>fetch(d.getAttribute("href"),{method:"HEAD"}).then(r=>{i
 const COUNTRIES={
   ES:{f:"🇪🇸",es:"España",en:"Spain",r:"eu"},
   PT:{f:"🇵🇹",es:"Portugal",en:"Portugal",r:"eu"},
+  FR:{f:"🇫🇷",es:"Francia",en:"France",r:"eu"},
   GB:{f:"🇬🇧",es:"Reino Unido",en:"United Kingdom",r:"eu"},
   IT:{f:"🇮🇹",es:"Italia",en:"Italy",r:"eu"},
   AT:{f:"🇦🇹",es:"Austria",en:"Austria",r:"eu"},
@@ -835,8 +836,23 @@ const PLACES=[
   {c:"ES",es:"Madrid",en:"Madrid",lat:40.42,lon:-3.70},
   {c:"ES",es:"Barcelona",en:"Barcelona",lat:41.39,lon:2.17},
   {c:"ES",es:"Bilbao",en:"Bilbao",lat:43.26,lon:-2.93},
+  {c:"ES",es:"San Sebastián",en:"San Sebastián",lat:43.32,lon:-1.98},
+  {c:"ES",es:"Santiago de Compostela",en:"Santiago de Compostela",lat:42.88,lon:-8.54},
+  {c:"ES",es:"Vigo",en:"Vigo",lat:42.24,lon:-8.72},
+  {c:"ES",es:"Huesca",en:"Huesca",lat:42.14,lon:-0.41},
+  {c:"ES",es:"Jaca",en:"Jaca",lat:42.57,lon:-0.55},
+  {c:"ES",es:"Panticosa",en:"Panticosa",lat:42.72,lon:-0.28},
+  {c:"ES",es:"Formigal",en:"Formigal",lat:42.77,lon:-0.36},
+  {c:"ES",es:"Lanuza",en:"Lanuza",lat:42.76,lon:-0.32},
+  {c:"ES",es:"Aínsa",en:"Aínsa",lat:42.42,lon:0.14},
+  {c:"ES",es:"Bielsa",en:"Bielsa",lat:42.63,lon:0.22},
+  {c:"ES",es:"Teruel",en:"Teruel",lat:40.34,lon:-1.11},
+  {c:"ES",es:"Valencia",en:"Valencia",lat:39.47,lon:-0.38},
+  {c:"ES",es:"Murcia",en:"Murcia",lat:37.99,lon:-1.13},
+  {c:"ES",es:"Granada",en:"Granada",lat:37.18,lon:-3.60},
   {c:"PT",es:"Lisboa",en:"Lisbon",lat:38.72,lon:-9.14},
   {c:"PT",es:"Oporto",en:"Porto",lat:41.15,lon:-8.61},
+  {c:"FR",es:"París",en:"Paris",lat:48.86,lon:2.35},
   {c:"GB",es:"Londres",en:"London",lat:51.51,lon:-0.13},
   {c:"IT",es:"Milán",en:"Milan",lat:45.46,lon:9.19},
   {c:"IT",es:"Bérgamo",en:"Bergamo",lat:45.70,lon:9.67},
@@ -951,7 +967,7 @@ function openCountry(code){
   const g=groups[code];OPEN=code;if(g.r==="eu")VIEW="europe";
   const xs=g.cities.map(p=>p.xy[0]),ys=g.cities.map(p=>p.xy[1]);
   const w=Math.max(...xs)-Math.min(...xs),h=Math.max(...ys)-Math.min(...ys);
-  const z=g.cities.length<2?4.2:Math.max(4.2,Math.min(8,Math.min(MW*.45/(w||1),MH*.55/(h||1))));
+  const z=g.cities.length<2?4.2:Math.max(4.2,Math.min(10,Math.min(MW*.6/(w||1),MH*.68/(h||1))));
   Z=viewFor(z,(Math.max(...xs)+Math.min(...xs))/2,(Math.max(...ys)+Math.min(...ys))/2);
   render();
   if(g.cities.length===1)setTimeout(()=>g.cities[0].pin.classList.add("act"),700);
