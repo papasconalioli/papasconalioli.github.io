@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hugo Hernández · Ingeniero Biomédico</title>
-<meta name="description" content="Portfolio de Hugo del Cristo Hernández Alemán, ingeniero biomédico especializado en análisis de datos clínicos y visual analytics.">
+<meta name="description" content="Portfolio de Hugo del Cristo Hernández Alemán, ingeniero biomédico e investigador en electrofisiología auricular y procesado de señales en el I3A (Universidad de Zaragoza).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -208,6 +208,43 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
   section{padding:76px 0}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+/* congresses */
+.filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:-28px 0 36px}
+.filters button{font:600 .85rem Inter,sans-serif;padding:8px 18px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;transition:.25s}
+.filters button:hover{border-color:var(--turq)}
+.filters button.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 18px -8px rgba(143,116,214,.6)}
+.congs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.cong{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px 24px 22px;box-shadow:var(--shadow);transition:transform .35s,box-shadow .35s,opacity .35s;overflow:hidden}
+.cong::after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:var(--turq-l);opacity:.7;transition:transform .5s}
+.cong.poster::after{background:var(--lila-l)}
+.cong:hover{transform:translateY(-8px);box-shadow:0 24px 40px -16px rgba(110,90,170,.4)}
+.cong:hover::after{transform:scale(1.6)}
+.cong.hide{display:none}
+.cong-top{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative;z-index:1;margin-bottom:12px}
+.cong .yr{font-family:Outfit;font-weight:800;font-size:1.6rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{white-space:nowrap;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:99px;background:var(--turq-l);color:#21877c}
+.badge.p{background:var(--lila-l);color:#6d50c0}
+.badge.t{background:#fff4e0;color:#a2670c}
+.cong h3{font-size:1.05rem;position:relative;z-index:1}
+.cong .where{font-size:.85rem;color:var(--lila-d);font-weight:600;margin:4px 0 10px;position:relative;z-index:1}
+.cong p{font-size:.88rem;color:var(--muted);position:relative;z-index:1}
+.cong p em{color:var(--ink);font-style:normal;font-weight:500}
+.cong .auth{margin-top:10px;font-size:.78rem}
+.cong .auth b{color:var(--ink)}
+/* courses */
+.courses{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.c-box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+.c-box h3{font-size:1.15rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.c-box h3 i{width:34px;height:34px;border-radius:10px;background:var(--grad);display:grid;place-items:center;font-style:normal;color:#fff;font-size:1rem}
+.c-box .sub{font-size:.85rem;color:var(--muted);margin-bottom:16px}
+.c-list{list-style:none}
+.c-list li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px dashed var(--line);font-size:.9rem;opacity:0;transform:translateX(-14px);transition:opacity .5s,transform .5s}
+.c-box.show .c-list li{opacity:1;transform:none}
+.c-list li::before{content:"✓";flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--turq-l);color:#21877c;font-size:.75rem;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.c-box:nth-child(2) .c-list li::before{background:var(--lila-l);color:#6d50c0}
+.c-list li small{display:block;color:var(--muted);font-size:.78rem}
+.c-list .org{display:block;margin-bottom:1px;font-size:.72rem;font-weight:700;color:var(--lila-d);text-transform:uppercase;letter-spacing:.05em}
+@media (max-width:860px){.courses{grid-template-columns:1fr}.filters{margin-top:-20px}}
 </style>
 </head>
 <body>
@@ -220,10 +257,9 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
     <ul class="links" id="links">
       <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#experiencia">Experiencia</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#documentos">Documentos</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#proyectos">Investigación</a></li>
+      <li><a href="#congresos">Congresos</a></li>
+      <li><a href="#cursos">Cursos</a></li>
       <li><a href="#formacion">Formación</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
@@ -235,12 +271,12 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
   <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
   <div class="wrap hero-grid">
     <div>
-      <span class="tag"><span class="dot"></span>Visual Analytics · TU Wien (Erasmus)</span>
+      <span class="tag"><span class="dot"></span>I3A · Universidad de Zaragoza</span>
       <h1>Hola, soy <span class="g">Hugo Hernández</span></h1>
       <div class="typed"><span id="typed"></span><span class="cur">&nbsp;</span></div>
-      <p class="lead">Ingeniero eléctrico reconvertido en biomédico. Trabajo en la intersección entre los datos clínicos, el machine learning y la visualización para ayudar a tomar mejores decisiones en salud.</p>
+      <p class="lead">Ingeniero biomédico en el Instituto de Investigación en Ingeniería de Aragón. Investigo la dinámica eléctrica de las aurículas para predecir la recurrencia de la fibrilación auricular tras la ablación, combinando procesado de señal, electrofisiología y gemelos digitales.</p>
       <div class="btns">
-        <a href="#proyectos" class="btn pri">Ver proyectos →</a>
+        <a href="#proyectos" class="btn pri">Ver investigación →</a>
         <a href="#contacto" class="btn sec">Contactar</a>
       </div>
     </div>
@@ -259,15 +295,15 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
     <div class="sec-head reveal"><small>Conóceme</small><h2>Sobre mí</h2></div>
     <div class="about">
       <div class="reveal">
-        <p>Soy graduado en <strong>Ingeniería Eléctrica</strong> por la Universidad de Las Palmas de Gran Canaria y estudiante del <strong>Máster en Ingeniería Biomédica</strong> de la Universidad de Zaragoza, que actualmente curso en la <strong>Universidad Técnica de Viena</strong> dentro del programa Erasmus.</p>
-        <p>Mi trayectoria combina el lado más técnico del entorno hospitalario (instalaciones, electromedicina) con el análisis de datos clínicos, el procesado de lenguaje natural y la radiómica aplicada a la radioterapia.</p>
-        <p>Fuera del laboratorio, soy percusionista titulado y he tocado en bandas y orquestas por Canarias y el resto de España.</p>
+        <p>Soy graduado en <strong>Ingeniería Eléctrica</strong> por la Universidad de Las Palmas de Gran Canaria y <strong>Máster en Ingeniería Biomédica</strong> por la Universidad de Zaragoza, con el Trabajo Fin de Máster realizado en la <strong>Universidad Técnica de Viena</strong> (Erasmus).</p>
+        <p>Desde marzo de 2024 trabajo en el <strong>I3A</strong> (Grupo de Tecnologías de las Comunicaciones), donde mi línea de investigación se centra en la <strong>electrofisiología auricular</strong>: caracterizar la dinámica espaciotemporal y la velocidad de conducción para anticipar qué pacientes recaerán en fibrilación auricular tras una ablación.</p>
+        <p>Antes pasé por el mantenimiento hospitalario, la biocomputación clínica y la analítica visual. Y fuera del laboratorio, soy percusionista titulado.</p>
       </div>
       <div class="facts">
-        <div class="fact reveal d1"><b data-count="3">0</b><span>Prácticas en salud e ingeniería</span></div>
-        <div class="fact reveal d2"><b data-count="2">0</b><span>Países de formación</span></div>
-        <div class="fact reveal d1"><b data-count="1">0</b><span>Documento RedETS en coautoría</span></div>
-        <div class="fact reveal d3"><b data-count="7">0</b><span>Años de conservatorio</span></div>
+        <div class="fact reveal d1"><b data-count="4">0</b><span>Congresos como ponente</span></div>
+        <div class="fact reveal d2"><b data-count="3">0</b><span>Países de formación e investigación</span></div>
+        <div class="fact reveal d1"><b data-count="11">0</b><span>Cursos de formación complementaria</span></div>
+        <div class="fact reveal d3"><b data-count="3">0</b><span>Prácticas en salud e ingeniería</span></div>
       </div>
     </div>
   </div>
@@ -280,10 +316,18 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
     <div class="timeline">
       <div class="t-item reveal">
         <div class="t-card">
-          <span class="t-date">2023 – actualidad</span>
+          <span class="t-date">Mar 2024 – actualidad</span>
+          <h3>Investigación doctoral · Ingeniería Biomédica</h3>
+          <h4>I3A · Universidad de Zaragoza · Grupo de Tecnologías de las Comunicaciones (GTC)</h4>
+          <p>Procesado de señales electrofisiológicas auriculares y modelos de gemelo digital para predecir la recurrencia de la fibrilación auricular tras la ablación. Resultados presentados en Computing in Cardiology, STAFF-MALT y CASEIB.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-card">
+          <span class="t-date">2023 – 2024</span>
           <h3>Trabajo Fin de Máster · Visual Analytics</h3>
-          <h4>TU Wien · Research Unit of Computer Graphics · Viena</h4>
-          <p>Desarrollo de una herramienta web de analítica visual comparativa para datos radiómicos de pacientes con tumores hepáticos tratados con radioterapia, con clustering mediante machine learning. Supervisión: Renata Raidou.</p>
+          <h4>TU Wien · Institute of Visual Computing &amp; Human-Centered Technology · Viena</h4>
+          <p>Herramienta web de analítica visual comparativa para datos radiómicos de pacientes con tumores hepáticos tratados con radioterapia, con clustering mediante machine learning. Supervisión: Renata Raidou.</p>
         </div>
       </div>
       <div class="t-item reveal">
@@ -317,9 +361,17 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
 <!-- PROJECTS -->
 <section id="proyectos">
   <div class="wrap">
-    <div class="sec-head reveal"><small>Lo que hago</small><h2>Proyectos destacados</h2></div>
+    <div class="sec-head reveal"><small>Lo que hago</small><h2>Investigación y proyectos</h2></div>
     <div class="grid3">
-      <article class="proj p1 reveal d1">
+      <article class="proj p2 reveal d1">
+        <div class="proj-top"><svg viewBox="0 0 24 24" fill="none" stroke="#8f74d6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M5 12h3l1.5-3 2 6 1.5-3H19" stroke="#3fb3a7"/></svg></div>
+        <div class="proj-body">
+          <h3>Predicción de recurrencia de fibrilación auricular tras ablación</h3>
+          <p>Línea de investigación en el I3A. Caracterización de la dinámica espaciotemporal auricular, corredores de conducción lenta y velocidad de conducción como predictores de recurrencia tras la primera ablación.</p>
+          <div class="chips"><span class="chip l">Electrofisiología</span><span class="chip">Procesado de señal</span><span class="chip l">Gemelos digitales</span><span class="chip">MATLAB</span></div>
+        </div>
+      </article>
+      <article class="proj p1 reveal d2">
         <div class="proj-top"><svg viewBox="0 0 24 24" fill="none" stroke="#3fb3a7" stroke-width="1.6" stroke-linecap="round"><circle cx="6" cy="17" r="2.5"/><circle cx="12" cy="7" r="2.5"/><circle cx="18" cy="15" r="2.5"/><circle cx="16" cy="6" r="1.5" stroke="#8f74d6"/><circle cx="7" cy="9" r="1.5" stroke="#8f74d6"/><path d="M3 21h18" /></svg></div>
         <div class="proj-body">
           <h3>Comparative Visual Analytics for Multi-Modal Liver Data</h3>
@@ -327,7 +379,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
           <div class="chips"><span class="chip">Radiómica</span><span class="chip l">Clustering</span><span class="chip">Python</span><span class="chip l">JavaScript</span></div>
         </div>
       </article>
-      <article class="proj p2 reveal d2">
+      <article class="proj p3 reveal d3">
         <div class="proj-top"><svg viewBox="0 0 24 24" fill="none" stroke="#8f74d6" stroke-width="1.6" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/><path d="M15 16l1.5 1.5L19 15" stroke="#3fb3a7"/></svg></div>
         <div class="proj-body">
           <h3>Datos de vida real en evaluación de tecnologías sanitarias</h3>
@@ -335,11 +387,11 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
           <div class="chips"><span class="chip l">Real-World Data</span><span class="chip">HTA</span><span class="chip l">PLN</span></div>
         </div>
       </article>
-      <article class="proj p3 reveal d3">
+      <article class="proj p1 reveal d1">
         <div class="proj-top"><svg viewBox="0 0 24 24" fill="none" stroke="#3fb3a7" stroke-width="1.6" stroke-linecap="round"><path d="M13 2L5 13h6l-1 9 8-11h-6z"/><circle cx="19" cy="5" r="1.5" stroke="#8f74d6"/></svg></div>
         <div class="proj-body">
           <h3>Instalación eléctrica e iluminación de un bloque quirúrgico</h3>
-          <p>Trabajo Fin de Grado desarrollado de la forma más realista posible durante las prácticas hospitalarias. Disponible para descarga en mi blog.</p>
+          <p>Trabajo Fin de Grado desarrollado de la forma más realista posible durante las prácticas hospitalarias.</p>
           <div class="chips"><span class="chip">Ingeniería eléctrica</span><span class="chip l">Entorno hospitalario</span></div>
           <a href="https://hdezhugo.blogspot.com/" target="_blank" rel="noopener" class="btn sec" style="margin-top:18px;align-self:flex-start;padding:9px 18px">Ver en el blog ↗</a>
         </div>
@@ -348,47 +400,94 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
   </div>
 </section>
 
-<!-- DOCUMENTS (PDFs en assets/docs/) -->
-<section id="documentos">
+<!-- CONGRESSES -->
+<section id="congresos" class="alt">
   <div class="wrap">
-    <div class="sec-head reveal"><small>Descargas</small><h2>Documentos</h2></div>
-    <div class="docs">
-      <a class="doc reveal d1" href="assets/docs/TFG-bloque-quirurgico.pdf" target="_blank" rel="noopener"><span class="ic">PDF</span><div><h3>Trabajo Fin de Grado</h3><p>Instalación eléctrica e iluminación de un bloque quirúrgico</p></div><span class="go">↓</span></a>
-      <a class="doc reveal d2" href="assets/docs/CV-Hugo-Hernandez.pdf" target="_blank" rel="noopener"><span class="ic">PDF</span><div><h3>Curriculum Vitae</h3><p>Versión completa en PDF</p></div><span class="go">↓</span></a>
-      <a class="doc reveal d3" href="assets/docs/documento-3.pdf" target="_blank" rel="noopener"><span class="ic">PDF</span><div><h3>Otro documento</h3><p>Cambia este título por el de tu PDF</p></div><span class="go">↓</span></a>
+    <div class="sec-head reveal"><small>Divulgación científica</small><h2>Congresos</h2></div>
+    <div class="filters reveal" id="filters">
+      <button class="on" data-f="all">Todos</button>
+      <button data-f="oral">Orales</button>
+      <button data-f="poster">Póster</button>
+    </div>
+    <div class="congs">
+      <article class="cong oral reveal d1">
+        <div class="cong-top"><span class="yr">2026</span><span class="badge">Presentación oral</span></div>
+        <h3>Computing in Cardiology 2026</h3>
+        <div class="where">📍 Madrid, España</div>
+        <p><em>“Slow Conduction Corridors and Conduction Velocity Predict Atrial Fibrillation Recurrence After First Ablation”</em></p>
+        <p class="auth"><b>Hernández-Alemán H</b>, Sánchez C, Mincholé A, Ramos-Maqueda J, Melero-Polo J, Martínez JP, Pueyo E.</p>
+      </article>
+      <article class="cong oral poster reveal d2">
+        <div class="cong-top"><span class="yr">CASEIB</span><span class="badge t">Modalidad por definir</span></div>
+        <h3>Congreso Anual de la Sociedad Española de Ingeniería Biomédica</h3>
+        <div class="where">📍 Zaragoza, España</div>
+        <p><em>“Caracterización de la dinámica espaciotemporal auricular para predecir la recurrencia de la fibrilación auricular tras la ablación”</em></p>
+        <p class="auth"><b>Hernández-Alemán H</b>, Sánchez C, Mincholé A, Ramos-Maqueda J, Melero-Polo J, Martínez JP, Pueyo E.</p>
+      </article>
+      <article class="cong oral reveal d3">
+        <div class="cong-top"><span class="yr">2025</span><span class="badge">Presentación oral</span></div>
+        <h3>STAFF-MALT 2025</h3>
+        <div class="where">📍 Panticosa, España</div>
+        <p><em>“Characterization of Atrial Spatiotemporal Dynamics for Prediction of Atrial Fibrillation Recurrence after Ablation”</em></p>
+        <p class="auth"><b>Hernández-Alemán H</b>, Sánchez C, Mincholé A, Ramos-Maqueda J, Melero-Polo J, Martínez JP, Pueyo E.</p>
+      </article>
+      <article class="cong poster reveal d1">
+        <div class="cong-top"><span class="yr">2025</span><span class="badge p">Póster</span></div>
+        <h3>Computing in Cardiology 2025</h3>
+        <div class="where">📍 São Paulo, Brasil</div>
+        <p><em>“Characterization of Atrial Spatiotemporal Dynamics for Prediction of Atrial Fibrillation Recurrence after Ablation”</em></p>
+        <p class="auth"><b>Hernández-Alemán H</b>, Sánchez C, Mincholé A, Ramos-Maqueda J, Melero-Polo J, Martínez JP, Pueyo E.</p>
+      </article>
+      <article class="cong oral reveal d2">
+        <div class="cong-top"><span class="yr">2024</span><span class="badge">Presentación oral</span></div>
+        <h3>HTAi 2024</h3>
+        <div class="where">📍 Health Technology Assessment international</div>
+        <p><em>Utilización de datos de vida real en el ámbito de RedETS</em>, relacionada con el documento metodológico del IACS.</p>
+      </article>
     </div>
   </div>
 </section>
-
-<!-- GALLERY (fotos en assets/galeria/) -->
-<section id="galeria" class="alt">
-  <div class="wrap">
-    <div class="sec-head reveal"><small>Momentos</small><h2>Galería</h2></div>
-    <div class="gallery reveal" id="gallery">
-      <figure class="g-item"><img src="assets/galeria/1.jpg" alt=""><figcaption>Prácticas en el Hospital Materno-Infantil</figcaption></figure>
-      <figure class="g-item"><img src="assets/galeria/2.jpg" alt=""><figcaption>IACS · Zaragoza</figcaption></figure>
-      <figure class="g-item"><img src="assets/galeria/3.jpg" alt=""><figcaption>TU Wien · Viena</figcaption></figure>
-      <figure class="g-item"><img src="assets/galeria/4.jpg" alt=""><figcaption>Concierto con la banda</figcaption></figure>
-      <figure class="g-item"><img src="assets/galeria/5.jpg" alt=""><figcaption>Pie de foto</figcaption></figure>
-      <figure class="g-item"><img src="assets/galeria/6.jpg" alt=""><figcaption>Pie de foto</figcaption></figure>
-    </div>
-  </div>
-</section>
-<div id="lightbox"><img alt=""></div>
 
 <!-- PUBLICATIONS -->
-<section class="alt">
+<section>
   <div class="wrap">
-    <div class="sec-head reveal"><small>Aportaciones</small><h2>Publicaciones y congresos</h2></div>
+    <div class="sec-head reveal"><small>Aportaciones</small><h2>Publicaciones</h2></div>
     <div class="pub reveal">
-      <span class="st">Documento metodológico · En revisión externa</span>
+      <span class="st">Documento de apoyo metodológico · En revisión externa</span>
       <h3>Using real-world data for health technology assessment (Uso de datos de vida real en evaluación de tecnologías sanitarias)</h3>
-      <p>Pérez-García G, Muñoz-Fernández C, Prieto-Remón L, Tellería-Orriols C, <mark>Hernández-Alemán H</mark>, Isern de Val MS, García-Arnesto S. IACS · Plan Estratégico RedETS 2022-2025, Ministerio de Sanidad.</p>
+      <p>Pérez-García G, Muñoz-Fernández C, Prieto-Remón L, Tellería-Orriols C, <mark>Hernández-Alemán H</mark>, Isern de Val MS, García-Arnesto S. IACS · Plan Estratégico RedETS 2022-2025, Ministerio de Sanidad. Se publicará en el portal web de RedETS.</p>
     </div>
-    <div class="pub reveal">
-      <span class="st">Congreso · Comunicación oral (solicitud)</span>
-      <h3>HTAi 2024 — Utilización de datos de vida real en el ámbito de RedETS</h3>
-      <p>Propuesta de comunicación oral relacionada con el desarrollo metodológico anterior.</p>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="cursos" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><small>Aprendizaje continuo</small><h2>Cursos y formación complementaria</h2></div>
+    <div class="courses">
+      <div class="c-box reveal">
+        <h3><i>🎓</i>Programa de doctorado</h3>
+        <p class="sub">Formación transversal e internacional durante el doctorado</p>
+        <ul class="c-list">
+          <li><div><span class="org">IEEE-EMBS</span>Summer School on Advanced Data Analytics in Physiology<small>Escuela de verano internacional sobre procesado de señales biomédicas</small></div></li>
+          <li><div><span class="org">G9</span>Herramientas fundamentales de investigación para un doctorado de éxito</div></li>
+          <li><div><span class="org">G9</span>Divulgar ciencia a los medios</div></li>
+          <li><div><span class="org">Campus Iberus</span>Métodos y estrategias clave para una buena revisión sistemática</div></li>
+          <li><div><span class="org">Campus Iberus</span>Introducción a la vida del doctorando</div></li>
+          <li><div><span class="org">Campus Iberus</span>Ciencia abierta y evaluación responsable: DORA y altmetrics para medir tu impacto<small>Optimiza tu escritura científica</small></div></li>
+        </ul>
+      </div>
+      <div class="c-box reveal d2">
+        <h3><i>✨</i>Otras competencias</h3>
+        <p class="sub">Idiomas, seguridad y herramientas</p>
+        <ul class="c-list">
+          <li><div><span class="org">Cambridge</span>First Certificate in English (B2 oficial)</div></li>
+          <li><div><span class="org">Seguridad</span>Prevención de Riesgos Laborales</div></li>
+          <li><div><span class="org">Empresa</span>Community Manager y Mindfulness Empresarial</div></li>
+          <li><div><span class="org">Ofimática</span>Microsoft Word 2016 (avanzado)</div></li>
+          <li><div><span class="org">Diseño</span>Adobe Photoshop CS6 (básico)</div></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -399,17 +498,17 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
     <div class="sec-head reveal"><small>Herramientas</small><h2>Habilidades</h2></div>
     <div class="skills">
       <div class="reveal">
-        <h3>Programación</h3>
-        <div class="bar"><div class="bar-l"><span>Python</span><span>Intermedio</span></div><div class="track"><div class="fill" data-w="68"></div></div></div>
-        <div class="bar"><div class="bar-l"><span>MATLAB</span><span>Principiante-intermedio</span></div><div class="track"><div class="fill" data-w="52"></div></div></div>
-        <div class="bar"><div class="bar-l"><span>JavaScript / CSS / HTML</span><span>Principiante</span></div><div class="track"><div class="fill" data-w="38"></div></div></div>
+        <h3>Programación e idiomas</h3>
+        <div class="bar"><div class="bar-l"><span>Python</span><span>Intermedio</span></div><div class="track"><div class="fill" data-w="66"></div></div></div>
+        <div class="bar"><div class="bar-l"><span>MATLAB</span><span>Intermedio</span></div><div class="track"><div class="fill" data-w="66"></div></div></div>
+        <div class="bar"><div class="bar-l"><span>JavaScript / CSS / HTML</span><span>Principiante</span></div><div class="track"><div class="fill" data-w="36"></div></div></div>
         <div class="bar"><div class="bar-l"><span>MySQL / Cassandra</span><span>Principiante</span></div><div class="track"><div class="fill" data-w="34"></div></div></div>
         <div class="bar"><div class="bar-l"><span>Inglés (Cambridge B2 First)</span><span>B2</span></div><div class="track"><div class="fill" data-w="72"></div></div></div>
       </div>
       <div class="reveal d2">
         <h3>Áreas de conocimiento</h3>
         <div class="cloud">
-          <span>Machine Learning</span><span>Reconocimiento de patrones</span><span>Radiómica</span><span>Visual Analytics</span><span>Procesado de señales biomédicas</span><span>Electrofisiología</span><span>PLN clínico</span><span>Real-World Data</span><span>Electromedicina</span><span>Instalaciones hospitalarias</span><span>Prevención de riesgos laborales</span><span>Photoshop</span>
+          <span>Electrofisiología cardíaca</span><span>Fibrilación auricular</span><span>Procesado de señales biomédicas</span><span>Gemelos digitales</span><span>Machine Learning</span><span>Reconocimiento de patrones</span><span>Radiómica</span><span>Visual Analytics</span><span>PLN clínico</span><span>Real-World Data</span><span>Electromedicina</span><span>Instalaciones hospitalarias</span>
         </div>
       </div>
     </div>
@@ -427,6 +526,33 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
     </div>
   </div>
 </section>
+
+<!-- DOCUMENTS (PDFs en assets/docs/) -->
+<section id="documentos">
+  <div class="wrap">
+    <div class="sec-head reveal"><small>Descargas</small><h2>Documentos</h2></div>
+    <div class="docs">
+      <a class="doc reveal d1" href="assets/docs/TFG-bloque-quirurgico.pdf" target="_blank" rel="noopener"><span class="ic">PDF</span><div><h3>Trabajo Fin de Grado</h3><p>Instalación eléctrica e iluminación de un bloque quirúrgico</p></div><span class="go">↓</span></a>
+      <a class="doc reveal d2" href="assets/docs/CV-Hugo-Hernandez.pdf" target="_blank" rel="noopener"><span class="ic">PDF</span><div><h3>Curriculum Vitae</h3><p>Versión completa en PDF</p></div><span class="go">↓</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY (fotos en assets/galeria/) -->
+<section id="galeria" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><small>Momentos</small><h2>Galería</h2></div>
+    <div class="gallery reveal" id="gallery">
+      <figure class="g-item"><img src="assets/galeria/1.jpg" alt=""><figcaption>Computing in Cardiology · São Paulo</figcaption></figure>
+      <figure class="g-item"><img src="assets/galeria/2.jpg" alt=""><figcaption>STAFF-MALT · Panticosa</figcaption></figure>
+      <figure class="g-item"><img src="assets/galeria/3.jpg" alt=""><figcaption>TU Wien · Viena</figcaption></figure>
+      <figure class="g-item"><img src="assets/galeria/4.jpg" alt=""><figcaption>Prácticas en el Hospital Materno-Infantil</figcaption></figure>
+      <figure class="g-item"><img src="assets/galeria/5.jpg" alt=""><figcaption>Concierto con la banda</figcaption></figure>
+      <figure class="g-item"><img src="assets/galeria/6.jpg" alt=""><figcaption>Pie de foto</figcaption></figure>
+    </div>
+  </div>
+</section>
+<div id="lightbox"><img alt=""></div>
 
 <!-- MUSIC -->
 <section>
@@ -446,12 +572,12 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
   <div class="wrap">
     <div class="contact reveal">
       <h2>¿Hablamos?</h2>
-      <p>Abierto a oportunidades de investigación, doctorado y proyectos en ingeniería biomédica y datos de salud.</p>
+      <p>Abierto a colaboraciones en electrofisiología, procesado de señales biomédicas y datos de salud.</p>
       <div class="socials">
-        <a href="mailto:huheale00@gmail.com">✉ Email</a>
+        <a href="mailto:hhernandez@unizar.es">✉ Email</a>
         <a href="https://orcid.org/0009-0007-8797-1481" target="_blank" rel="noopener">ORCID</a>
         <a href="https://hdezhugo.blogspot.com/" target="_blank" rel="noopener">Blog</a>
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/papasconalioli" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </div>
@@ -461,7 +587,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
 
 <script>
 // Typing effect
-const words=["Ingeniero Biomédico","Análisis de datos clínicos","Visual Analytics & ML","Radiómica en radioterapia","Percusionista"];
+const words=["Ingeniero Biomédico","Electrofisiología auricular","Procesado de señales biomédicas","Gemelos digitales","Percusionista"];
 let w=0,c=0,del=false;const el=document.getElementById("typed");
 (function type(){
   const cur=words[w];
@@ -472,16 +598,24 @@ let w=0,c=0,del=false;const el=document.getElementById("typed");
   else{del=false;w=(w+1)%words.length;setTimeout(type,300)}
 })();
 
-// Reveal on scroll + skill bars + counters
+// Reveal on scroll + skill bars + counters + staggered course lists
 const io=new IntersectionObserver(es=>{es.forEach(e=>{
   if(!e.isIntersecting)return;
   e.target.classList.add("show");
   e.target.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%");
+  e.target.querySelectorAll(".c-list li").forEach((li,i)=>li.style.transitionDelay=(.15+i*.09)+"s");
   const n=e.target.querySelector("[data-count]");
-  if(n){let t=+n.dataset.count,i=0;const s=setInterval(()=>{n.textContent=++i;if(i>=t)clearInterval(s)},120)}
+  if(n){let t=+n.dataset.count,i=0;const s=setInterval(()=>{n.textContent=++i;if(i>=t)clearInterval(s)},Math.max(50,500/t))}
   io.unobserve(e.target);
 })},{threshold:.15});
 document.querySelectorAll(".reveal").forEach(r=>io.observe(r));
+
+// Congress filters
+document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#filters button").forEach(x=>x.classList.toggle("on",x===b));
+  const f=b.dataset.f;
+  document.querySelectorAll(".cong").forEach(c=>c.classList.toggle("hide",f!=="all"&&!c.classList.contains(f)));
+});
 
 // Nav + progress bar
 const nav=document.getElementById("nav"),pb=document.getElementById("progress");
@@ -498,7 +632,7 @@ document.getElementById("yr").textContent=new Date().getFullYear();
 
 // Gallery: hide photos that don't exist yet (and the whole section if empty) + lightbox
 const gal=document.getElementById("gallery"),lb=document.getElementById("lightbox");
-const checkGal=()=>{if(!gal.querySelector(".g-item")){document.getElementById("galeria").style.display="none";document.querySelector('a[href="#galeria"]').parentElement.style.display="none"}};
+const checkGal=()=>{if(!gal.querySelector(".g-item"))document.getElementById("galeria").style.display="none"};
 gal.querySelectorAll("img").forEach(img=>{
   const kill=()=>{img.parentElement.remove();checkGal()};
   if(img.complete&&img.naturalWidth===0)kill();else img.addEventListener("error",kill);
@@ -506,6 +640,11 @@ gal.querySelectorAll("img").forEach(img=>{
 });
 lb.onclick=()=>lb.classList.remove("open");
 addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
+
+// Documents: hide PDF cards whose file isn't uploaded yet
+const docs=[...document.querySelectorAll(".doc")];
+Promise.all(docs.map(d=>fetch(d.getAttribute("href"),{method:"HEAD"}).then(r=>{if(!r.ok)d.remove()}).catch(()=>d.remove())))
+  .then(()=>{if(!document.querySelector(".doc"))document.getElementById("documentos").style.display="none"});
 </script>
 </body>
 </html>
