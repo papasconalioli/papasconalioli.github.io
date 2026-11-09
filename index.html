@@ -216,39 +216,57 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
 .views{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:3px;position:relative}
 .views button{position:relative;z-index:1;border:0;background:none;font:600 .82rem Inter,sans-serif;color:var(--muted);padding:7px 14px;border-radius:99px;cursor:pointer;transition:color .3s}
 .views button.on{color:#fff}
-.views i{position:absolute;top:3px;bottom:3px;left:3px;border-radius:99px;background:var(--grad);transition:transform .45s cubic-bezier(.3,1.3,.5,1),width .45s}
+.views i{position:absolute;top:3px;bottom:3px;left:3px;border-radius:99px;background:var(--grad);transition:transform .45s cubic-bezier(.3,1.3,.5,1),width .45s,opacity .3s}
+.views.none i{opacity:0}
 .map{position:relative;aspect-ratio:1000/386.1;overflow:hidden;border-radius:20px;background:radial-gradient(ellipse at 30% 40%,var(--turq-l),transparent 60%),radial-gradient(ellipse at 75% 60%,var(--lila-l),transparent 60%),var(--bg)}
 .map-in{position:absolute;inset:0;transform-origin:0 0;transition:transform 1.1s cubic-bezier(.65,0,.25,1);--z:1}
-.layer{position:absolute;inset:0;-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat}
-.layer{transition:opacity .7s ease .25s}
+.layer{position:absolute;inset:0;-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat;transition:opacity .7s ease .25s}
 .layer.land{--m:url(assets/map/world-dots.svg);background:var(--lila);opacity:.55}
 .layer.vis{--m:url(assets/map/visited-dots.svg);background:var(--turq-d);opacity:.95}
-.layer.eu{background:var(--lila);opacity:0}
-.layer.euv{background:var(--turq-d);opacity:0}
-.map.europe .layer.land,.map.europe .layer.vis{opacity:0}
-.map.europe .layer.eu{opacity:.55}
-.map.europe .layer.euv{opacity:.95}
+.layer.dl{background:var(--lila);opacity:0}
+.layer.dv{background:var(--turq-d);opacity:0}
+.map.zoomed .layer.land,.map.zoomed .layer.vis{opacity:0}
+.map.zoomed .layer.dl{opacity:.55}
+.map.zoomed .layer.dv{opacity:.95}
 .arcs{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-.arcs path{fill:none;stroke:url(#arcGrad);stroke-width:calc(1.5px / var(--z));stroke-linecap:round;stroke-dasharray:calc(3px / var(--z)) calc(5px / var(--z));opacity:.85;animation:dash 1.4s linear infinite;transition:stroke-width 1.1s}
+.arcs .arc{fill:none;stroke:url(#arcGrad);stroke-width:calc(1.5px / var(--z));stroke-linecap:round;stroke-dasharray:calc(3px / var(--z)) calc(5px / var(--z));opacity:.85;animation:dash 1.4s linear infinite,arcIn .8s ease both}
+.arcs .lead{stroke:var(--muted);stroke-width:calc(1px / var(--z));opacity:.6;animation:arcIn .5s ease both}
 @keyframes dash{to{stroke-dashoffset:calc(-16px / var(--z))}}
-.pin{position:absolute;width:0;height:0;border:0;background:none;padding:0;cursor:pointer;z-index:2}
-.pin .dot{position:absolute;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--turq-d);border:2px solid var(--card);box-shadow:0 0 0 2px var(--turq-d),0 4px 10px rgba(63,179,167,.5);transform:scale(calc(1/var(--z)));transition:transform 1.1s cubic-bezier(.65,0,.25,1),background .3s}
+@keyframes arcIn{from{opacity:0}}
+.pin{position:absolute;width:0;height:0;border:0;background:none;padding:0;cursor:pointer;z-index:2;transition:left .5s cubic-bezier(.3,1.2,.5,1),top .5s cubic-bezier(.3,1.2,.5,1),opacity .4s}
+.pin.off{opacity:0;pointer-events:none;visibility:hidden;transition:left .5s,top .5s,opacity .3s,visibility 0s .3s}
+.pin .dot{position:absolute;left:0;top:0;width:var(--s,12px);height:var(--s,12px);margin:calc(var(--s,12px) / -2) 0 0 calc(var(--s,12px) / -2);border-radius:50%;background:var(--turq-d);border:2px solid var(--card);box-shadow:0 0 0 2px var(--turq-d),0 4px 10px rgba(63,179,167,.45);transform:scale(calc(1/var(--z)));transition:transform 1.1s cubic-bezier(.65,0,.25,1),background .3s;display:grid;place-items:center;color:#fff;font:700 .68rem/1 Inter,sans-serif}
+.pin.city{--s:15px}
+.pin.city .dot{border-width:3px;box-shadow:0 0 0 1.5px var(--turq-d),0 6px 14px -2px rgba(43,40,64,.45)}
+.pin.country{--s:22px}
+.pin.region{--s:30px}
+.pin.region .dot{font-size:.8rem}
 .pin.home .dot{background:var(--lila-d);box-shadow:0 0 0 2px var(--lila-d),0 4px 10px rgba(143,116,214,.5)}
-.pin .dot::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid currentColor;color:var(--turq-d);animation:ping 2.2s cubic-bezier(0,0,.2,1) infinite;animation-delay:var(--d,0s)}
+.pin .dot::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid currentColor;color:var(--turq-d);animation:ping 2.4s cubic-bezier(0,0,.2,1) infinite;animation-delay:var(--d,0s)}
+.pin.city .dot::after{display:none}
 .pin.home .dot::after{color:var(--lila-d)}
-@keyframes ping{0%{transform:scale(1);opacity:.9}80%,100%{transform:scale(3.2);opacity:0}}
-.pin .tip{position:absolute;left:0;bottom:12px;transform:translate(-50%,6px) scale(calc(1/var(--z)));transform-origin:50% 100%;white-space:nowrap;background:var(--ink);color:var(--bg);font:600 .78rem Inter,sans-serif;padding:6px 10px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+@keyframes ping{0%{transform:scale(1);opacity:.8}80%,100%{transform:scale(2.4);opacity:0}}
+.pin .tip{position:absolute;left:0;bottom:calc(var(--s,12px) / 2 / var(--z) + 6px / var(--z));transform:translate(-50%,6px) scale(calc(1/var(--z)));transform-origin:50% 100%;white-space:nowrap;background:var(--ink);color:var(--bg);font:600 .78rem Inter,sans-serif;padding:6px 10px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
 .pin .tip small{display:block;font-weight:500;opacity:.7;font-size:.7rem}
 .pin .tip::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:var(--ink)}
-.pin:hover,.pin:focus-visible,.pin.act{z-index:5}
+.pin:hover,.pin:focus-visible,.pin.act{z-index:6}
 .pin:hover .tip,.pin:focus-visible .tip,.pin.act .tip{opacity:1;transform:translate(-50%,0) scale(calc(1/var(--z)))}
-.pin:hover .dot,.pin.act .dot{background:var(--lila-d)}
-.places{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.places button{display:inline-flex;align-items:center;gap:7px;font:500 .85rem Inter,sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:7px 14px;cursor:pointer;transition:.25s}
-.places button:hover,.places button.act{border-color:var(--turq);transform:translateY(-2px);box-shadow:0 8px 16px -10px rgba(63,179,167,.7)}
-.places button span{font-size:1rem;line-height:1}
+.pin.city:hover .dot,.pin.city.act .dot,.pin.country:hover .dot,.pin.region:hover .dot{background:var(--lila-d)}
+.map-back{position:absolute;left:12px;top:12px;z-index:8;display:inline-flex;align-items:center;gap:6px;font:600 .8rem Inter,sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:7px 13px;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(-8px);pointer-events:none;transition:.35s}
+.map.open .map-back{opacity:1;transform:none;pointer-events:auto}
+.map-back:hover{border-color:var(--turq)}
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips-row button{display:inline-flex;align-items:center;gap:7px;font:500 .85rem Inter,sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:7px 14px;cursor:pointer;transition:.25s}
+.chips-row button em{font-style:normal;font-size:.72rem;font-weight:700;color:#fff;background:var(--grad);border-radius:99px;padding:1px 7px}
+.chips-row button:hover,.chips-row button.act{border-color:var(--turq);transform:translateY(-2px);box-shadow:0 8px 16px -10px rgba(63,179,167,.7)}
+.chips-row button.on{background:var(--grad);color:#fff;border-color:transparent}
+.chips-row button.on em{background:rgba(255,255,255,.3)}
+.chips-row button span{font-size:1rem;line-height:1}
+.cities{margin-top:10px;padding:12px;border-radius:16px;background:var(--bg);border:1px dashed var(--line);display:none}
+.cities.show{display:flex;animation:fade .4s}
+.cities button{background:var(--card)}
 .map-note{font-size:.78rem;color:var(--muted);margin-top:12px}
-@media (max-width:860px){.travel{padding:20px}.t-stats{gap:16px}.pin .dot{width:10px;height:10px;margin:-5px 0 0 -5px}}
+@media (max-width:860px){.travel{padding:20px}.t-stats{gap:16px}.pin.country{--s:20px}.pin.region{--s:26px}}
 
 /* ---------- TOGGLES ---------- */
 .nav-r{display:flex;align-items:center;gap:18px}
@@ -691,7 +709,7 @@ body,nav.scrolled,.fact,.t-card,.proj,.cong,.c-box,.edu-c,.doc,.music,.pub,.pape
       <div class="travel-head">
         <div>
           <h3><i>✈️</i><span data-en="Travelling">Viajes</span></h3>
-          <p data-en="Places I have visited. Tap a point or a city to find it on the map.">Lugares que he visitado. Toca un punto o una ciudad para localizarla en el mapa.</p>
+          <p data-en="Places I have visited. Tap a country to see its cities.">Lugares que he visitado. Pulsa un país para ver sus ciudades.</p>
         </div>
         <div class="t-stats">
           <div><b id="nPlaces">0</b><span data-en="Places">Lugares</span></div>
@@ -700,18 +718,20 @@ body,nav.scrolled,.fact,.t-card,.proj,.cong,.c-box,.edu-c,.doc,.music,.pub,.pape
         <div class="views" id="views"><i></i><button class="on" data-v="world" data-en="🌍 World">🌍 Mundo</button><button data-v="europe" data-en="🇪🇺 Europe">🇪🇺 Europa</button></div>
       </div>
       <div class="map" id="map">
+        <button class="map-back" id="mapBack">← Volver</button>
         <div class="map-in" id="mapIn">
           <div class="layer land"></div>
           <div class="layer vis"></div>
-          <div class="layer eu"></div>
-          <div class="layer euv"></div>
+          <div class="layer dl"></div>
+          <div class="layer dv"></div>
           <svg class="arcs" id="arcs" viewBox="0 0 1000 386.1" preserveAspectRatio="none">
             <defs><linearGradient id="arcGrad" x1="0" x2="1"><stop offset="0" stop-color="#8f74d6"/><stop offset="1" stop-color="#3fb3a7"/></linearGradient></defs>
           </svg>
         </div>
       </div>
-      <div class="places" id="places"></div>
-      <p class="map-note" data-en="Lines start from home: the Canary Islands. Countries I have visited are highlighted in turquoise.">Las líneas salen de casa: las Islas Canarias. Los países visitados aparecen resaltados en turquesa.</p>
+      <div class="chips-row" id="countryChips"></div>
+      <div class="chips-row cities" id="cityChips"></div>
+      <p class="map-note" data-en="Lines start from home (the Canary Islands, in purple). Visited countries are highlighted in turquoise and the number shows how many places I have been to in each.">Las líneas salen de casa (las Islas Canarias, en morado). Los países visitados aparecen en turquesa y el número indica cuántos lugares he visitado en cada uno.</p>
     </div>
   </div>
 </section>
@@ -798,64 +818,174 @@ Promise.all(docs.map(d=>fetch(d.getAttribute("href"),{method:"HEAD"}).then(r=>{i
   .then(()=>{if(!document.querySelector(".doc"))document.getElementById("documentos").style.display="none"});
 
 // ---------- Travel map ----------
-// To add a place: copy a line, set the name (es/en), country (es/en), flag and coordinates (lat, lon).
+// HOW TO ADD A PLACE: add a line to PLACES with the country code (c), names (es/en) and coordinates (lat, lon).
+// For a new country, add it to COUNTRIES too (flag, names, and region: "eu" groups it under Europe in the world view).
+const COUNTRIES={
+  ES:{f:"🇪🇸",es:"España",en:"Spain",r:"eu"},
+  PT:{f:"🇵🇹",es:"Portugal",en:"Portugal",r:"eu"},
+  GB:{f:"🇬🇧",es:"Reino Unido",en:"United Kingdom",r:"eu"},
+  IT:{f:"🇮🇹",es:"Italia",en:"Italy",r:"eu"},
+  AT:{f:"🇦🇹",es:"Austria",en:"Austria",r:"eu"},
+  CZ:{f:"🇨🇿",es:"Chequia",en:"Czechia",r:"eu"},
+  HU:{f:"🇭🇺",es:"Hungría",en:"Hungary",r:"eu"},
+  BR:{f:"🇧🇷",es:"Brasil",en:"Brazil",r:"sa"},
+};
 const PLACES=[
-  {es:"Islas Canarias",en:"Canary Islands",ces:"España",cen:"Spain",f:"🇪🇸",lat:27.96,lon:-15.6,home:true},
-  {es:"Madrid",en:"Madrid",ces:"España",cen:"Spain",f:"🇪🇸",lat:40.42,lon:-3.70},
-  {es:"Barcelona",en:"Barcelona",ces:"España",cen:"Spain",f:"🇪🇸",lat:41.39,lon:2.17},
-  {es:"Lisboa",en:"Lisbon",ces:"Portugal",cen:"Portugal",f:"🇵🇹",lat:38.72,lon:-9.14},
-  {es:"Oporto",en:"Porto",ces:"Portugal",cen:"Portugal",f:"🇵🇹",lat:41.15,lon:-8.61},
-  {es:"Londres",en:"London",ces:"Reino Unido",cen:"United Kingdom",f:"🇬🇧",lat:51.51,lon:-0.13},
-  {es:"Viena",en:"Vienna",ces:"Austria",cen:"Austria",f:"🇦🇹",lat:48.21,lon:16.37},
-  {es:"Salzburgo",en:"Salzburg",ces:"Austria",cen:"Austria",f:"🇦🇹",lat:47.81,lon:13.04},
-  {es:"Praga",en:"Prague",ces:"Chequia",cen:"Czechia",f:"🇨🇿",lat:50.08,lon:14.44},
-  {es:"Budapest",en:"Budapest",ces:"Hungría",cen:"Hungary",f:"🇭🇺",lat:47.50,lon:19.04},
+  {c:"ES",es:"Islas Canarias",en:"Canary Islands",lat:27.96,lon:-15.6,home:true},
+  {c:"ES",es:"Madrid",en:"Madrid",lat:40.42,lon:-3.70},
+  {c:"ES",es:"Barcelona",en:"Barcelona",lat:41.39,lon:2.17},
+  {c:"ES",es:"Bilbao",en:"Bilbao",lat:43.26,lon:-2.93},
+  {c:"PT",es:"Lisboa",en:"Lisbon",lat:38.72,lon:-9.14},
+  {c:"PT",es:"Oporto",en:"Porto",lat:41.15,lon:-8.61},
+  {c:"GB",es:"Londres",en:"London",lat:51.51,lon:-0.13},
+  {c:"IT",es:"Milán",en:"Milan",lat:45.46,lon:9.19},
+  {c:"IT",es:"Bérgamo",en:"Bergamo",lat:45.70,lon:9.67},
+  {c:"IT",es:"Turín",en:"Turin",lat:45.07,lon:7.69},
+  {c:"IT",es:"Florencia",en:"Florence",lat:43.77,lon:11.26},
+  {c:"IT",es:"Pisa",en:"Pisa",lat:43.72,lon:10.40},
+  {c:"IT",es:"Roma",en:"Rome",lat:41.90,lon:12.50},
+  {c:"IT",es:"Nápoles",en:"Naples",lat:40.85,lon:14.27},
+  {c:"IT",es:"Caserta",en:"Caserta",lat:41.07,lon:14.33},
+  {c:"IT",es:"Amalfi",en:"Amalfi",lat:40.63,lon:14.60},
+  {c:"AT",es:"Viena",en:"Vienna",lat:48.21,lon:16.37},
+  {c:"AT",es:"Salzburgo",en:"Salzburg",lat:47.81,lon:13.04},
+  {c:"AT",es:"Graz",en:"Graz",lat:47.07,lon:15.44},
+  {c:"AT",es:"Hallstatt",en:"Hallstatt",lat:47.56,lon:13.65},
+  {c:"CZ",es:"Praga",en:"Prague",lat:50.08,lon:14.44},
+  {c:"HU",es:"Budapest",en:"Budapest",lat:47.50,lon:19.04},
+  {c:"BR",es:"São Paulo",en:"São Paulo",lat:-23.55,lon:-46.63},
 ];
+const REGIONS={eu:{es:"Europa",en:"Europe",f:"🇪🇺"}};
 const MW=1000,MH=386.1,LATN=83,KK=MW/360;
 const pj=(lat,lon)=>[(lon+180)*KK,(LATN-lat)*KK];
-const VIEWS={world:{z:1,cx:500,cy:193},europe:{z:4.2,cx:pj(42,2)[0],cy:pj(42,2)[1]}};
-const mapIn=document.getElementById("mapIn"),arcs=document.getElementById("arcs"),placesBox=document.getElementById("places");
-const home=PLACES.find(p=>p.home)||PLACES[0],[hx,hy]=pj(home.lat,home.lon);
-const pins=[],chips=[];
-PLACES.forEach((p,i)=>{
-  const [x,y]=pj(p.lat,p.lon);
-  if(p!==home){const a=document.createElementNS("http://www.w3.org/2000/svg","path");
-    const mx=(hx+x)/2,my=(hy+y)/2-Math.hypot(x-hx,y-hy)*.35;
-    a.setAttribute("d",`M${hx} ${hy}Q${mx} ${my} ${x} ${y}`);arcs.appendChild(a);}
-  const b=document.createElement("button");b.className="pin"+(p.home?" home":"");
-  b.style.left=x/MW*100+"%";b.style.top=y/MH*100+"%";b.style.setProperty("--d",(i*.23%2.2)+"s");
-  b.innerHTML='<span class="dot"></span><span class="tip"></span>';mapIn.appendChild(b);pins.push(b);
-  const c=document.createElement("button");placesBox.appendChild(c);chips.push(c);
-  const on=v=>{pins[i].classList.toggle("act",v);c.classList.toggle("act",v)};
-  [b,c].forEach(el=>{el.addEventListener("mouseenter",()=>on(true));el.addEventListener("mouseleave",()=>on(false));
-    el.addEventListener("focus",()=>on(true));el.addEventListener("blur",()=>on(false))});
-  c.addEventListener("click",()=>{const eu=p.lat>34&&p.lat<62&&p.lon>-25&&p.lon<35;setView(eu?"europe":"world");
-    pins.forEach((q,j)=>q.classList.toggle("act",j===i));setTimeout(()=>pins[i].classList.add("act"),50)});
-  b.addEventListener("click",()=>pins.forEach(q=>q.classList.toggle("act",q===b)));
-});
-function renderPlaces(){
-  PLACES.forEach((p,i)=>{const n=p[LANG]||p.es,cn=LANG==="en"?p.cen:p.ces;
-    pins[i].querySelector(".tip").innerHTML=`${p.f} ${n}<small>${cn}${p.home?(LANG==="en"?" · home":" · casa"):""}</small>`;
-    pins[i].setAttribute("aria-label",`${n}, ${cn}`);chips[i].innerHTML=`<span>${p.f}</span>${n}`});
-}
-document.getElementById("nPlaces").dataset.count=PLACES.length;
-document.getElementById("nCountries").dataset.count=new Set(PLACES.map(p=>p.cen)).size;
-document.querySelectorAll(".t-stats > div").forEach(d=>io.observe(d));
+const mapEl=document.getElementById("map"),mapIn=document.getElementById("mapIn"),arcs=document.getElementById("arcs");
+const countryRow=document.getElementById("countryChips"),cityRow=document.getElementById("cityChips");
 const viewsBox=document.getElementById("views"),vi=viewsBox.querySelector("i");
-function setView(v){
-  const V=VIEWS[v];let tx=50-V.z*V.cx/MW*100,ty=50-V.z*V.cy/MH*100;
-  tx=Math.min(0,Math.max(100-V.z*100,tx));ty=Math.min(0,Math.max(100-V.z*100,ty));
-  if(v==="europe"&&!mapIn.dataset.eu){mapIn.dataset.eu=1;   // fine Europe dots load only when needed
-    mapIn.querySelector(".eu").style.setProperty("--m","url(assets/map/europe-dots.svg)");
-    mapIn.querySelector(".euv").style.setProperty("--m","url(assets/map/europe-visited-dots.svg)");}
-  document.getElementById("map").classList.toggle("europe",v==="europe");
-  mapIn.style.transform=`translate(${tx}%,${ty}%) scale(${V.z})`;mapIn.style.setProperty("--z",V.z);
-  viewsBox.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));moveViewPill();
+const T=(es,en)=>LANG==="en"?en:es;
+const home=PLACES.find(p=>p.home);home.xy=pj(home.lat,home.lon);
+PLACES.forEach(p=>p.xy=pj(p.lat,p.lon));
+
+// --- build markers: home, one per region (world view), one per country, one per city ---
+const mk=(cls,d)=>{const b=document.createElement("button");b.className="pin "+cls;b.style.setProperty("--d",d+"s");
+  b.innerHTML='<span class="dot"></span><span class="tip"></span>';mapIn.appendChild(b);return b};
+const avg=a=>[a.reduce((s,p)=>s+p[0],0)/a.length,a.reduce((s,p)=>s+p[1],0)/a.length];
+const groups={};
+Object.keys(COUNTRIES).forEach((code,i)=>{
+  const cities=PLACES.filter(p=>p.c===code&&!p.home);if(!cities.length)return;
+  const g=groups[code]={code,...COUNTRIES[code],cities,xy:avg(cities.map(p=>p.xy))};
+  g.pin=mk("country",i*.3%2.4);g.pin.onclick=e=>{e.stopPropagation();openCountry(code)};
+  cities.forEach((p,j)=>{p.pin=mk("city off",0);p.pin.onclick=e=>{e.stopPropagation();focusCity(p)}});
+});
+const regions={};
+Object.entries(REGIONS).forEach(([r,R])=>{
+  const gs=Object.values(groups).filter(g=>g.r===r);if(gs.length<2)return;
+  regions[r]={...R,r,groups:gs,xy:avg(gs.map(g=>g.xy)),pin:mk("region",.6)};
+  regions[r].pin.onclick=e=>{e.stopPropagation();setView("europe")};
+});
+home.pin=mk("home",0);home.pin.onclick=e=>{e.stopPropagation();home.pin.classList.toggle("act")};
+
+// --- chips ---
+const chip=(row,html,on)=>{const b=document.createElement("button");b.innerHTML=html;b.onclick=on;row.appendChild(b);return b};
+Object.values(groups).forEach(g=>{g.chip=chip(countryRow,"",()=>openCountry(g.code));
+  g.chip.addEventListener("mouseenter",()=>g.pin.classList.add("act"));g.chip.addEventListener("mouseleave",()=>g.pin.classList.remove("act"))});
+
+// --- state ---
+let VIEW="world",OPEN=null;
+function viewFor(z,cx,cy){
+  let tx=50-z*cx/MW*100,ty=50-z*cy/MH*100;
+  tx=Math.min(0,Math.max(100-z*100,tx));ty=Math.min(0,Math.max(100-z*100,ty));
+  mapIn.style.transform=`translate(${tx}%,${ty}%) scale(${z})`;mapIn.style.setProperty("--z",z);
+  mapEl.classList.toggle("zoomed",z>1.5);
+  if(z>1.5&&!mapIn.dataset.dl){mapIn.dataset.dl=1;   // fine dots load only when first needed
+    mapIn.querySelector(".dl").style.setProperty("--m","url(assets/map/detail-dots.svg)");
+    mapIn.querySelector(".dv").style.setProperty("--m","url(assets/map/detail-visited-dots.svg)")}
+  return z;
 }
-function moveViewPill(){const b=viewsBox.querySelector("button.on");vi.style.width=b.offsetWidth+"px";vi.style.transform=`translateX(${b.offsetLeft-3}px)`}
+let Z=1;
+function render(){
+  // which markers are visible in the current state
+  const vis=[];
+  Object.values(groups).forEach(g=>{
+    const inRegion=VIEW==="world"&&regions[g.r];
+    const show=!inRegion&&OPEN!==g.code;
+    g.pin.classList.toggle("off",!show);if(show)vis.push({pin:g.pin,xy:g.xy});
+    g.cities.forEach(p=>{const s=OPEN===g.code;p.pin.classList.toggle("off",!s);if(s)vis.push({pin:p.pin,xy:p.xy,lead:true});else p.pin.classList.remove("act")});
+    g.chip.classList.toggle("on",OPEN===g.code);
+  });
+  Object.values(regions).forEach(R=>{const s=VIEW==="world"&&!OPEN;R.pin.classList.toggle("off",!s);if(s)vis.push({pin:R.pin,xy:R.xy})});
+  layout(vis);
+  mapEl.classList.toggle("open",!!OPEN);
+  viewsBox.classList.toggle("none",!!OPEN);
+  viewsBox.querySelectorAll("button").forEach(b=>b.classList.toggle("on",!OPEN&&b.dataset.v===VIEW));moveViewPill();
+  // city chips for the open country
+  cityRow.innerHTML="";cityRow.classList.toggle("show",!!OPEN);
+  if(OPEN)groups[OPEN].cities.forEach(p=>{const b=chip(cityRow,T(p.es,p.en),()=>focusCity(p));
+    b.addEventListener("mouseenter",()=>p.pin.classList.add("act"));b.addEventListener("mouseleave",()=>p.pin.classList.remove("act"))});
+}
+// spread markers that would overlap on screen; draw a thin leader line back to the real spot
+function layout(vis){
+  const S=mapEl.clientWidth/MW*Z,D=(innerWidth<860?19:22);
+  const pts=vis.map(v=>({...v,x:v.xy[0],y:v.xy[1]}));
+  for(let it=0;it<80;it++){let moved=false;
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const a=pts[i],b=pts[j];let dx=(b.x-a.x)*S,dy=(b.y-a.y)*S,d=Math.hypot(dx,dy);
+      const need=D*(a.pin.classList.contains("city")&&b.pin.classList.contains("city")?.8:1.25);
+      if(d<need){if(d<.01){dx=Math.cos(i+j);dy=Math.sin(i+j);d=1}
+        const k=(need-d)/2/d/S;a.x-=dx*k;a.y-=dy*k;b.x+=dx*k;b.y+=dy*k;moved=true}}
+    if(!moved)break}
+  arcs.querySelectorAll(".arc,.lead").forEach(e=>e.remove());
+  const [hx,hy]=home.xy;
+  pts.forEach((p,i)=>{
+    p.pin.style.left=p.x/MW*100+"%";p.pin.style.top=p.y/MH*100+"%";
+    if(p.lead&&Math.hypot(p.x-p.xy[0],p.y-p.xy[1])*S>3)line(`M${p.xy[0]} ${p.xy[1]}L${p.x} ${p.y}`,"lead");
+    if(!OPEN){const mx=(hx+p.x)/2,my=(hy+p.y)/2-Math.hypot(p.x-hx,p.y-hy)*.32;
+      line(`M${hx} ${hy}Q${mx} ${my} ${p.x} ${p.y}`,"arc",i*.05)}
+  });
+  home.pin.style.left=hx/MW*100+"%";home.pin.style.top=hy/MH*100+"%";
+}
+function line(d,cls,delay=0){const a=document.createElementNS("http://www.w3.org/2000/svg","path");a.setAttribute("d",d);a.setAttribute("class",cls);a.style.animationDelay=`0s,${delay}s`;arcs.appendChild(a)}
+
+function setView(v){OPEN=null;VIEW=v;
+  Z=v==="europe"?viewFor(4.2,...pj(46,7)):viewFor(1,500,193);render()}
+function openCountry(code){
+  const g=groups[code];OPEN=code;if(g.r==="eu")VIEW="europe";
+  const xs=g.cities.map(p=>p.xy[0]),ys=g.cities.map(p=>p.xy[1]);
+  const w=Math.max(...xs)-Math.min(...xs),h=Math.max(...ys)-Math.min(...ys);
+  const z=g.cities.length<2?4.2:Math.max(4.2,Math.min(8,Math.min(MW*.45/(w||1),MH*.55/(h||1))));
+  Z=viewFor(z,(Math.max(...xs)+Math.min(...xs))/2,(Math.max(...ys)+Math.min(...ys))/2);
+  render();
+  if(g.cities.length===1)setTimeout(()=>g.cities[0].pin.classList.add("act"),700);
+  if(innerWidth<860)mapEl.scrollIntoView({behavior:"smooth",block:"center"});
+}
+function focusCity(p){if(OPEN!==p.c)openCountry(p.c);
+  PLACES.forEach(q=>q.pin&&q.pin.classList.toggle("act",q===p))}
+function labels(){
+  const nC=n=>`${n} ${T(n>1?"lugares":"lugar",n>1?"places":"place")}`;
+  home.pin.querySelector(".tip").innerHTML=`${COUNTRIES[home.c].f} ${T(home.es,home.en)}<small>${T("Casa","Home")}</small>`;
+  home.pin.setAttribute("aria-label",T(home.es,home.en));
+  Object.values(groups).forEach(g=>{const n=g.cities.length;
+    g.pin.querySelector(".dot").textContent=n;
+    g.pin.querySelector(".tip").innerHTML=`${g.f} ${T(g.es,g.en)}<small>${nC(n)} · ${T("pulsa para ver","tap to explore")}</small>`;
+    g.pin.setAttribute("aria-label",`${T(g.es,g.en)}, ${nC(n)}`);
+    g.chip.innerHTML=`<span>${g.f}</span>${T(g.es,g.en)}<em>${n}</em>`;
+    g.cities.forEach(p=>{p.pin.querySelector(".tip").innerHTML=`${T(p.es,p.en)}<small>${T(g.es,g.en)}</small>`;p.pin.setAttribute("aria-label",T(p.es,p.en))})});
+  Object.values(regions).forEach(R=>{const n=R.groups.reduce((s,g)=>s+g.cities.length,0);
+    R.pin.querySelector(".dot").textContent=n;
+    R.pin.querySelector(".tip").innerHTML=`${R.f} ${T(R.es,R.en)}<small>${nC(n)} · ${R.groups.length} ${T("países","countries")}</small>`;
+    R.pin.setAttribute("aria-label",`${T(R.es,R.en)}, ${nC(n)}`)});
+  document.getElementById("mapBack").textContent=T("← Volver","← Back");
+}
+function renderPlaces(){labels();render()}
+function moveViewPill(){const b=viewsBox.querySelector("button.on")||viewsBox.querySelector("button");vi.style.width=b.offsetWidth+"px";vi.style.transform=`translateX(${b.offsetLeft-3}px)`}
 viewsBox.querySelectorAll("button").forEach(b=>b.onclick=()=>setView(b.dataset.v));
-addEventListener("resize",moveViewPill);
-renderPlaces();setView("world");
+document.getElementById("mapBack").onclick=e=>{e.stopPropagation();setView(VIEW)};
+mapEl.addEventListener("click",()=>PLACES.forEach(q=>q.pin&&q.pin.classList.remove("act")));
+addEventListener("keydown",e=>{if(e.key==="Escape"&&OPEN)setView(VIEW)});
+let rT;addEventListener("resize",()=>{clearTimeout(rT);rT=setTimeout(()=>{moveViewPill();render()},150)});
+document.getElementById("nPlaces").dataset.count=PLACES.length;
+document.getElementById("nCountries").dataset.count=Object.keys(groups).length;
+document.querySelectorAll(".t-stats > div").forEach(d=>io.observe(d));
+labels();setView("world");
 
 // ---------- Theme toggle ----------
 const root=document.documentElement;
