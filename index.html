@@ -88,6 +88,15 @@ nav.scrolled{background:rgba(251,250,255,.82);backdrop-filter:blur(12px);box-sha
 .doc p{font-size:.85rem;color:var(--muted)}
 .doc .go{margin-left:auto;font-size:1.3rem;color:var(--lila-d);transition:transform .3s}
 .doc:hover .go{transform:translateY(3px)}
+
+/* atrium-shaped avatar */
+.avatar{width:min(440px,88vw);aspect-ratio:640/450}
+.avatar .la{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:laSway 9s ease-in-out infinite;transform-origin:52% 55%}
+.la-shape{fill:var(--bg);stroke:url(#laGrad);stroke-width:15;stroke-linejoin:round;filter:drop-shadow(0 14px 22px rgba(143,116,214,.25));transition:fill .4s}
+@keyframes laSway{0%,100%{transform:rotate(-2deg) scale(1)}50%{transform:rotate(2deg) scale(1.03)}}
+.avatar .ini{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%)}
+.avatar .la-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:url(#laClip);animation:laSway 9s ease-in-out infinite;transform-origin:52% 55%}
+.avatar .ecg{bottom:4%}
 @keyframes morph{0%,100%{border-radius:42% 58% 63% 37%/45% 40% 60% 55%}50%{border-radius:58% 42% 35% 65%/55% 62% 38% 45%}}
 .ecg{position:absolute;left:-10%;bottom:12%;width:120%;height:70px}
 .ecg path{fill:none;stroke:var(--turq-d);stroke-width:3;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 3.5s ease-in-out infinite}
@@ -313,7 +322,10 @@ body,nav.scrolled,.fact,.t-card,.proj,.cong,.c-box,.edu-c,.doc,.music,.pub,.pape
 @media (max-width:860px){
   .hero-grid,.about,.skills{grid-template-columns:1fr}
   .hero-grid{text-align:center}.hero p.lead{margin-left:auto;margin-right:auto}.btns{justify-content:center}
-  .avatar{width:220px;order:-1}
+  .avatar{width:min(300px,80vw);order:-1}
+  .avatar .ecg{height:44px;bottom:-2%}
+  .avatar .ini{font-size:3.6rem}
+  .hero{padding-top:90px}
   .music{flex-direction:column;text-align:center;padding:32px 24px}
   .links{position:fixed;top:70px;left:0;right:0;flex-direction:column;align-items:center;gap:18px;padding:24px;background:rgba(251,250,255,.97);backdrop-filter:blur(12px);transform:translateY(-130%);transition:transform .35s;box-shadow:0 10px 20px -10px rgba(110,90,170,.3)}
   .links.open{transform:none}
@@ -414,8 +426,15 @@ body,nav.scrolled,.fact,.t-card,.proj,.cong,.c-box,.edu-c,.doc,.music,.pub,.pape
       </div>
     </div>
     <div class="avatar">
-      <div class="ring"></div>
-      <div class="in"><span class="ini">HH</span><img src="assets/foto-perfil.jpg" alt="Hugo Hernández" onerror="this.remove()"></div>
+      <svg class="la" viewBox="20 80 640 450" aria-hidden="true">
+        <defs>
+          <linearGradient id="laGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--turq)"/><stop offset="1" style="stop-color:var(--lila)"/></linearGradient>
+          <clipPath id="laClip" clipPathUnits="objectBoundingBox"><path transform="scale(0.001563 0.002222) translate(-20 -80)" d="M95 98 C110 92 120 96 135 104 L240 146 C320 154 420 152 480 140 L590 112 C606 108 614 114 618 124 L640 196 C644 210 636 216 624 220 L548 256 C536 262 536 278 548 284 L630 330 C642 338 644 346 642 356 L636 398 C634 410 624 412 612 408 L560 392 C540 386 528 378 520 384 C505 420 490 455 460 480 C410 515 290 520 220 488 C185 470 168 430 160 398 C156 388 150 386 140 386 L62 386 C48 386 44 378 44 366 L44 314 C44 302 50 298 62 296 L150 278 C166 274 166 266 152 260 L56 222 C42 216 38 206 42 194 L80 112 C84 102 88 98 95 98Z"><animate attributeName="d" values="M95 98 C110 92 120 96 135 104 L240 146 C320 154 420 152 480 140 L590 112 C606 108 614 114 618 124 L640 196 C644 210 636 216 624 220 L548 256 C536 262 536 278 548 284 L630 330 C642 338 644 346 642 356 L636 398 C634 410 624 412 612 408 L560 392 C540 386 528 378 520 384 C505 420 490 455 460 480 C410 515 290 520 220 488 C185 470 168 430 160 398 C156 388 150 386 140 386 L62 386 C48 386 44 378 44 366 L44 314 C44 302 50 298 62 296 L150 278 C166 274 166 266 152 260 L56 222 C42 216 38 206 42 194 L80 112 C84 102 88 98 95 98Z;M94.3 97.4 C108.6 90.8 118.5 94.6 133.3 102.4 L236.7 140.9 C319.3 149.1 417 157.5 475.5 145.1 L586.3 114.8 C602.5 110.6 610.8 116.2 615.2 125.8 L641.3 195.5 C646.2 209.3 638.4 215.3 626.5 219.3 L551.7 255.2 C540 261.2 541.3 277.4 553.8 283.6 L636.9 330.7 C648.9 338.9 650.9 347 648.8 357.3 L641.5 399.8 C639 411.9 628.7 413.9 616.7 409.9 L564.4 393.8 C544.3 387.8 532.5 379.9 523.7 385.7 C505.3 420.2 487.8 452.7 456.7 475.1 C407.9 508.6 289.5 522 216.3 493.7 C180.5 475 164.2 432.9 158.2 399 C155.1 388.4 149.5 386.2 139.9 386.1 L64 385.4 C50.2 385.3 46.8 377.3 47.5 365.2 L50.1 313.7 C50.5 302 56.6 298 68.6 296.1 L157 278.8 C172.9 275 172.7 267.3 158.6 261.4 L62.1 223.7 C48.1 217.7 43.8 207.8 47.2 195.9 L80.4 112.3 C83.8 101.9 87.5 97.6 94.3 97.4Z;M95 98 C110 92 120 96 135 104 L240 146 C320 154 420 152 480 140 L590 112 C606 108 614 114 618 124 L640 196 C644 210 636 216 624 220 L548 256 C536 262 536 278 548 284 L630 330 C642 338 644 346 642 356 L636 398 C634 410 624 412 612 408 L560 392 C540 386 528 378 520 384 C505 420 490 455 460 480 C410 515 290 520 220 488 C185 470 168 430 160 398 C156 388 150 386 140 386 L62 386 C48 386 44 378 44 366 L44 314 C44 302 50 298 62 296 L150 278 C166 274 166 266 152 260 L56 222 C42 216 38 206 42 194 L80 112 C84 102 88 98 95 98Z" dur="8s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></path></clipPath>
+        </defs>
+        <path class="la-shape" d="M95 98 C110 92 120 96 135 104 L240 146 C320 154 420 152 480 140 L590 112 C606 108 614 114 618 124 L640 196 C644 210 636 216 624 220 L548 256 C536 262 536 278 548 284 L630 330 C642 338 644 346 642 356 L636 398 C634 410 624 412 612 408 L560 392 C540 386 528 378 520 384 C505 420 490 455 460 480 C410 515 290 520 220 488 C185 470 168 430 160 398 C156 388 150 386 140 386 L62 386 C48 386 44 378 44 366 L44 314 C44 302 50 298 62 296 L150 278 C166 274 166 266 152 260 L56 222 C42 216 38 206 42 194 L80 112 C84 102 88 98 95 98Z"><animate attributeName="d" values="M95 98 C110 92 120 96 135 104 L240 146 C320 154 420 152 480 140 L590 112 C606 108 614 114 618 124 L640 196 C644 210 636 216 624 220 L548 256 C536 262 536 278 548 284 L630 330 C642 338 644 346 642 356 L636 398 C634 410 624 412 612 408 L560 392 C540 386 528 378 520 384 C505 420 490 455 460 480 C410 515 290 520 220 488 C185 470 168 430 160 398 C156 388 150 386 140 386 L62 386 C48 386 44 378 44 366 L44 314 C44 302 50 298 62 296 L150 278 C166 274 166 266 152 260 L56 222 C42 216 38 206 42 194 L80 112 C84 102 88 98 95 98Z;M94.3 97.4 C108.6 90.8 118.5 94.6 133.3 102.4 L236.7 140.9 C319.3 149.1 417 157.5 475.5 145.1 L586.3 114.8 C602.5 110.6 610.8 116.2 615.2 125.8 L641.3 195.5 C646.2 209.3 638.4 215.3 626.5 219.3 L551.7 255.2 C540 261.2 541.3 277.4 553.8 283.6 L636.9 330.7 C648.9 338.9 650.9 347 648.8 357.3 L641.5 399.8 C639 411.9 628.7 413.9 616.7 409.9 L564.4 393.8 C544.3 387.8 532.5 379.9 523.7 385.7 C505.3 420.2 487.8 452.7 456.7 475.1 C407.9 508.6 289.5 522 216.3 493.7 C180.5 475 164.2 432.9 158.2 399 C155.1 388.4 149.5 386.2 139.9 386.1 L64 385.4 C50.2 385.3 46.8 377.3 47.5 365.2 L50.1 313.7 C50.5 302 56.6 298 68.6 296.1 L157 278.8 C172.9 275 172.7 267.3 158.6 261.4 L62.1 223.7 C48.1 217.7 43.8 207.8 47.2 195.9 L80.4 112.3 C83.8 101.9 87.5 97.6 94.3 97.4Z;M95 98 C110 92 120 96 135 104 L240 146 C320 154 420 152 480 140 L590 112 C606 108 614 114 618 124 L640 196 C644 210 636 216 624 220 L548 256 C536 262 536 278 548 284 L630 330 C642 338 644 346 642 356 L636 398 C634 410 624 412 612 408 L560 392 C540 386 528 378 520 384 C505 420 490 455 460 480 C410 515 290 520 220 488 C185 470 168 430 160 398 C156 388 150 386 140 386 L62 386 C48 386 44 378 44 366 L44 314 C44 302 50 298 62 296 L150 278 C166 274 166 266 152 260 L56 222 C42 216 38 206 42 194 L80 112 C84 102 88 98 95 98Z" dur="8s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></path>
+      </svg>
+      <span class="ini">HH</span>
+      <img class="la-photo" src="assets/foto-perfil.jpg" alt="Hugo Hernández" onerror="this.remove()">
       <svg class="ecg" viewBox="0 0 600 70" preserveAspectRatio="none"><path d="M0 40 H170 L190 40 L205 12 L222 64 L240 4 L258 52 L272 40 H380 L395 30 L410 40 H600"/></svg>
     </div>
   </div>
