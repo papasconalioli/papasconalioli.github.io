@@ -127,7 +127,7 @@ section{padding:100px 0}
 .t-card p{color:var(--muted);font-size:.93rem}
 
 /* projects */
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}
 .proj{background:var(--card);border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .35s,box-shadow .35s;display:flex;flex-direction:column}
 .proj:hover{transform:translateY(-10px);box-shadow:0 24px 40px -16px rgba(110,90,170,.4)}
 .proj-top{height:150px;display:grid;place-items:center;position:relative;overflow:hidden}
@@ -302,7 +302,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
       <div class="facts">
         <div class="fact reveal d1"><b data-count="4">0</b><span>Congresos como ponente</span></div>
         <div class="fact reveal d2"><b data-count="3">0</b><span>Países de formación e investigación</span></div>
-        <div class="fact reveal d1"><b data-count="11">0</b><span>Cursos de formación complementaria</span></div>
+        <div class="fact reveal d1"><b data-count="12">0</b><span>Cursos de formación complementaria</span></div>
         <div class="fact reveal d3"><b data-count="3">0</b><span>Prácticas en salud e ingeniería</span></div>
       </div>
     </div>
@@ -390,10 +390,10 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
       <article class="proj p1 reveal d1">
         <div class="proj-top"><svg viewBox="0 0 24 24" fill="none" stroke="#3fb3a7" stroke-width="1.6" stroke-linecap="round"><path d="M13 2L5 13h6l-1 9 8-11h-6z"/><circle cx="19" cy="5" r="1.5" stroke="#8f74d6"/></svg></div>
         <div class="proj-body">
-          <h3>Instalación eléctrica e iluminación de un bloque quirúrgico</h3>
-          <p>Trabajo Fin de Grado desarrollado de la forma más realista posible durante las prácticas hospitalarias.</p>
+          <h3><a href="assets/docs/TFG-bloque-quirurgico.pdf" download="TFG_Hugo_Hernandez_Aleman.pdf">Instalación eléctrica e iluminación de un bloque quirúrgico</a></h3>
+          <p>Trabajo Fin de Grado (ULPGC) desarrollado de la forma más realista posible durante las prácticas hospitalarias: proyecto completo de 561 páginas con cálculos, planos y presupuesto.</p>
           <div class="chips"><span class="chip">Ingeniería eléctrica</span><span class="chip l">Entorno hospitalario</span></div>
-          <a href="https://hdezhugo.blogspot.com/" target="_blank" rel="noopener" class="btn sec" style="margin-top:18px;align-self:flex-start;padding:9px 18px">Ver en el blog ↗</a>
+          <a href="assets/docs/TFG-bloque-quirurgico.pdf" download="TFG_Hugo_Hernandez_Aleman.pdf" class="btn pri" style="margin-top:18px;align-self:flex-start;padding:10px 20px">Descargar TFG (PDF, 55 MB) ↓</a>
         </div>
       </article>
     </div>
@@ -482,6 +482,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
         <p class="sub">Idiomas, seguridad y herramientas</p>
         <ul class="c-list">
           <li><div><span class="org">Cambridge</span>First Certificate in English (B2 oficial)</div></li>
+          <li><div><span class="org">Idiomas</span>Italiano · nivel B1</div></li>
           <li><div><span class="org">Seguridad</span>Prevención de Riesgos Laborales</div></li>
           <li><div><span class="org">Empresa</span>Community Manager y Mindfulness Empresarial</div></li>
           <li><div><span class="org">Ofimática</span>Microsoft Word 2016 (avanzado)</div></li>
@@ -504,6 +505,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
         <div class="bar"><div class="bar-l"><span>JavaScript / CSS / HTML</span><span>Principiante</span></div><div class="track"><div class="fill" data-w="36"></div></div></div>
         <div class="bar"><div class="bar-l"><span>MySQL / Cassandra</span><span>Principiante</span></div><div class="track"><div class="fill" data-w="34"></div></div></div>
         <div class="bar"><div class="bar-l"><span>Inglés (Cambridge B2 First)</span><span>B2</span></div><div class="track"><div class="fill" data-w="72"></div></div></div>
+        <div class="bar"><div class="bar-l"><span>Italiano</span><span>B1</span></div><div class="track"><div class="fill" data-w="56"></div></div></div>
       </div>
       <div class="reveal d2">
         <h3>Áreas de conocimiento</h3>
@@ -532,7 +534,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem}
   <div class="wrap">
     <div class="sec-head reveal"><small>Descargas</small><h2>Documentos</h2></div>
     <div class="docs">
-      <a class="doc reveal d1" href="assets/docs/TFG-bloque-quirurgico.pdf" target="_blank" rel="noopener"><span class="ic">PDF</span><div><h3>Trabajo Fin de Grado</h3><p>Instalación eléctrica e iluminación de un bloque quirúrgico</p></div><span class="go">↓</span></a>
+      <a class="doc reveal d1" href="assets/docs/TFG-bloque-quirurgico.pdf" download="TFG_Hugo_Hernandez_Aleman.pdf"><span class="ic">PDF</span><div><h3>Trabajo Fin de Grado</h3><p>Instalación eléctrica e iluminación de una planta de quirófanos · 55 MB</p></div><span class="go">↓</span></a>
       <a class="doc reveal d2" href="assets/docs/CV-Hugo-Hernandez.pdf" target="_blank" rel="noopener"><span class="ic">PDF</span><div><h3>Curriculum Vitae</h3><p>Versión completa en PDF</p></div><span class="go">↓</span></a>
     </div>
   </div>
