@@ -58,6 +58,12 @@ lb.onclick=()=>lb.classList.remove("open");
 addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
 }}
 
+// Any image with class "zoom" opens in the lightbox
+{const lb=document.getElementById("lightbox");
+ if(lb){document.querySelectorAll("img.zoom").forEach(img=>img.addEventListener("click",()=>{lb.querySelector("img").src=img.src;lb.classList.add("open")}));
+  lb.addEventListener("click",()=>lb.classList.remove("open"));
+  addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")})}}
+
 // Documents: hide PDF cards whose file isn't uploaded yet
 const docs=[...document.querySelectorAll(".doc")];
 Promise.all(docs.map(d=>fetch(d.getAttribute("href"),{method:"HEAD"}).then(r=>{if(!r.ok)d.remove()}).catch(()=>d.remove())))

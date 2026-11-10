@@ -400,3 +400,8 @@ body,nav.scrolled,.fact,.t-card,.proj,.cong,.c-box,.edu-c,.doc,.music,.pub,.pape
 .bio-chips a{font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);transition:.25s}
 .bio-chips a:hover{transform:translateY(-3px);border-color:var(--turq)}
 @media (max-width:860px){.bio-hero{padding:120px 0 50px}}
+
+/* photos inside timeline cards (click to enlarge) */
+.t-photo{margin:16px 0 0;border-radius:14px;overflow:hidden;aspect-ratio:2/1;background:var(--lila-l);cursor:zoom-in}
+.t-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transition:transform .6s}
+.t-photo:hover img{transform:scale(1.05)}
