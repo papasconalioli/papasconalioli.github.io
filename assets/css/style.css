@@ -408,6 +408,6 @@ body,nav.scrolled,.fact,.t-card,.proj,.cong,.c-box,.edu-c,.doc,.music,.pub,.pape
 
 /* timeline cards with photo on the left */
 .timeline.wide{max-width:980px}
-.t-card.media{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;align-items:center;padding:18px 24px 18px 18px}
-.t-card.media .t-photo{margin:0;aspect-ratio:4/3;height:100%;min-height:220px}
+.t-card.media{display:grid;grid-template-columns:clamp(200px,30%,280px) minmax(0,1fr);gap:24px;align-items:center;padding:18px 26px 18px 18px}
+.t-card.media .t-photo{margin:0;aspect-ratio:4/3}
 @media (max-width:760px){.t-card.media{grid-template-columns:1fr;padding:16px}.t-card.media .t-photo{aspect-ratio:16/10;min-height:0}}
