@@ -405,3 +405,9 @@ body,nav.scrolled,.fact,.t-card,.proj,.cong,.c-box,.edu-c,.doc,.music,.pub,.pape
 .t-photo{margin:16px 0 0;border-radius:14px;overflow:hidden;aspect-ratio:2/1;background:var(--lila-l);cursor:zoom-in}
 .t-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transition:transform .6s}
 .t-photo:hover img{transform:scale(1.05)}
+
+/* timeline cards with photo on the left */
+.timeline.wide{max-width:980px}
+.t-card.media{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;align-items:center;padding:18px 24px 18px 18px}
+.t-card.media .t-photo{margin:0;aspect-ratio:4/3;height:100%;min-height:220px}
+@media (max-width:760px){.t-card.media{grid-template-columns:1fr;padding:16px}.t-card.media .t-photo{aspect-ratio:16/10;min-height:0}}
